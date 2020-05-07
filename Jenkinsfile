@@ -9,6 +9,8 @@ def mavenHome= tool name: 'maven3.6.2'
   echo "Jenkins URL ${env.JENKINS_URL}"
   echo "JOB Name ${env.JOB_NAME}"
    
+  properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '2', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([pollSCM('* * * * *')])])
+   
 stage('checkoutCode')
 {
 git branch: 'development', credentialsId: '388d441c-4558-4bb6-8231-9dc7340117ee', url: 'https://github.com/sree-ec-applications/maven-web-application.git '
